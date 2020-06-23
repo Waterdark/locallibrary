@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+# include() используется чтобы добавлять URL из каталога приложения 
+from django.urls import include
+# Добавление URL соотношения, чтобы перенаправить запросы с корневового URL, на URL приложения  (функция RedirectView)
+from django.views.generic import RedirectView
+# Использование static() чтобы добавить соотношения для статических файлов только на период разработки
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('catalog/', include('catalog.urls')),
+    path('', RedirectView.as_view(url='/catalog/', permanent=True)),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
