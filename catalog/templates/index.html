@@ -16,5 +16,7 @@
     <li><strong>Авторы:</strong> {{ num_authors }}</li>
     <li><strong>Жанры:</strong> {{ num_genre }}</li>
   </ul>
+  <p>Вы поситили данную страницу {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+
 
 {% endblock %}
