@@ -1,7 +1,8 @@
 from django.shortcuts import render # render() - функция, которая генерирует HTML-файлы при помощи шаблонов
+from .models import Book, Author, BookInstance, Genre, Language
+from django.views import generic
 
 # Create your views here.
-from .models import Book, Author, BookInstance, Genre, Language
 
 def index(request):
     """
@@ -25,3 +26,17 @@ def index(request):
                 'num_authors':num_authors, 
                 'num_genre': num_genre},
     )
+
+class BookListView(generic.ListView):
+    model = Book
+    paginate_by = 10 #поле для пострантчного вывода данных (если боее 10, остальное выводится на следующих страницах)
+
+class BookDetailView(generic.DetailView):
+    model = Book
+
+class AuthorListView(generic.ListView):
+    model = Author
+    paginate_by = 5 
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
