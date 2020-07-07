@@ -1,19 +1,25 @@
 from django.db import models
 from django.urls import reverse #Используется для генерации URL путем изменения шаблонов URL
 import uuid # Требуется для уникальных экземпляров книги
+from datetime import timedelta
+from math import floor
 
 # Create your models here.
 class Genre(models.Model):
     """Модель, представляющая жанр книги (например, Фантастика, Non Fiction)."""
     name = models.CharField(max_length=200, help_text="Enter a book genre (e.g. Science Fiction, French Poetry etc.)")
     
+    def get_absolute_url(self):
+        """Возвращает URL для доступа к конкретному экземпляру жанра."""
+        return reverse('genre-detail', args=[str(self.id)])
+
     def __str__(self):
         """
         Строка для представления объекта Model (на сайте администратора и т. Д.)
         Метод просто возвращает имя жанра, определенного конкретной записью
         """
         return self.name
-
+    
 
 """
 Модель книги представляет всю информацию о доступной книге в общем смысле, но не конкретный физический «экземпляр» 
@@ -95,7 +101,12 @@ class Author(models.Model):
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('Died', null=True, blank=True)
-    
+
+    # метод для вычисления возраста автора
+    def old(self):
+        old = (self.date_of_death - self.date_of_birth)
+        return floor(old.days / 365)
+
     def get_absolute_url(self):
         """Возвращает URL для доступа к конкретному экземпляру автора."""
         return reverse('author-detail', args=[str(self.id)])
@@ -103,7 +114,8 @@ class Author(models.Model):
 
     def __str__(self):
         """Строка для представления объекта Model."""
-        return '%s, %s' % (self.last_name, self.first_name)
+        return f'{self.last_name} {self.first_name}'
+        # return '%s, %s' % (self.last_name, self.first_name)
 
 class Language(models.Model):
     """Модель, представляющая язык (например, английский, французский, японский и т. Д.)"""
