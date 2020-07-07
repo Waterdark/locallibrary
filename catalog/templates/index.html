@@ -10,11 +10,11 @@
 
   <p>The library has the following record counts:</p>
   <ul>
-    <li><strong>Книги:</strong> {{ num_books }}</li>
+    <li><strong>Книги:</strong><a href="{% url 'books' %}"> {{ num_books }}</a></li>
     <li><strong>Копии:</strong> {{ num_instances }}</li>
     <li><strong>Доступные копии:</strong> {{ num_instances_available }}</li>
-    <li><strong>Авторы:</strong> {{ num_authors }}</li>
-    <li><strong>Жанры:</strong> {{ num_genre }}</li>
+    <li><strong>Авторы:</strong><a href="{% url 'authors' %}"> {{ num_authors }}</a></li>
+    <li><strong>Жанры:</strong> <a href="{% url 'genres' %}"> {{ num_genre }}</a></li>
   </ul>
   <p>Вы поситили данную страницу {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
 
