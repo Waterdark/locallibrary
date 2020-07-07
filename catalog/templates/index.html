@@ -4,11 +4,11 @@
 {% block content %}
 <h1>Домашняя страница местной бибблиотеки</h1>
 
-  <p>Welcome to <em>LocalLibrary</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
+  <p>Добро пожаловать в <em>местную библиотеку</em>, очень простой веб-сайт Django, разработанный в качестве учебного примера в сети разработчиков Mozilla.</p>
 
 <h2>Изменяющеяся информация</h2>
 
-  <p>The library has the following record counts:</p>
+  <p>Библиотека имеет следующее количество записей:</p>
   <ul>
     <li><strong>Книги:</strong><a href="{% url 'books' %}"> {{ num_books }}</a></li>
     <li><strong>Копии:</strong> {{ num_instances }}</li>
@@ -16,7 +16,7 @@
     <li><strong>Авторы:</strong><a href="{% url 'authors' %}"> {{ num_authors }}</a></li>
     <li><strong>Жанры:</strong> <a href="{% url 'genres' %}"> {{ num_genre }}</a></li>
   </ul>
-  <p>Вы поситили данную страницу {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+  <p>Вы поситили данную страницу {{ num_visits }}{% if num_visits == 1 %} time{% else %} раз {% endif %}.</p>
 
 
 {% endblock %}
