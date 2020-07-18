@@ -18,5 +18,6 @@ urlpatterns = [
     url(r'^genres/$', views.GenreListView.as_view(), name='genres'),
     # path('genre/<int:pk>', views.GenreDetailView.as_view(), name='genre-detail'),
     url(r'^genre/(?P<pk>\d+)$', views.GenreDetailView.as_view(), name='genre-detail'),
-    
+    url(r'^mybooks/$', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
+    path(r'borrowed/', views.LoanedBooksAllListView.as_view(), name='all-borrowed'),
 ]
